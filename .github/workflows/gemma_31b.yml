@@ -1,4 +1,4 @@
-name: Run Refactoring Benchmark
+name: Run 31B
 
 on:
   workflow_dispatch:
