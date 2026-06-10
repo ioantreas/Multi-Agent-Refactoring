@@ -1,4 +1,4 @@
-name: Run Refactoring Benchmark
+name: Run Gemini
 
 on:
   workflow_dispatch:
