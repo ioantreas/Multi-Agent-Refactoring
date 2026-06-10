@@ -207,6 +207,12 @@ OUTPUT FORMAT:
             )
 
             logger.debug(f"Result of import run for cadidate {candidate}: {result}")
+            logger.debug(f"Return code: {result.returncode}")
+            logger.debug("STDOUT:")
+            logger.debug(result.stdout)
+            
+            logger.debug("STDERR:")
+            logger.debug(result.stderr)
 
             if result.returncode == 0:
                 logger.debug(f"[TestCreationAgent] Resolved runtime import path: {candidate}")
