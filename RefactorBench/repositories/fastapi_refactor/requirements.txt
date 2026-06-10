@@ -1,3 +1,4 @@
+-e .[all]
 aiosqlite==0.22.1
 annotated-types==0.7.0
 anyio==3.7.1
@@ -24,7 +25,6 @@ dirty-equals==0.6.0
 distlib==0.4.1
 dnspython==2.8.0
 email-validator==2.3.0
--e git+ssh://git@github.com/microsoft/RefactorBench.git@210b2d15a373ad265aa721f70199c9962d7de069#egg=fastapi&subdirectory=repositories/fastapi_refactor
 fastapi-cli==0.0.7
 filelock==3.29.1
 Flask==2.3.3
