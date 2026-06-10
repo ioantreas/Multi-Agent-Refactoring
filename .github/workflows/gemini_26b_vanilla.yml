@@ -1,0 +1,56 @@
+name: Run Refactoring Benchmark 26b vanilla
+
+on:
+  workflow_dispatch:
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 720
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install root dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Create repository virtual environments
+        run: |
+          find RefactorBench/repositories -mindepth 1 -maxdepth 1 -type d | while read repo; do
+              if [ -f "$repo/requirements.txt" ]; then
+                  echo "=================================================="
+                  echo "Creating venv for $repo"
+                  echo "=================================================="
+
+                  python -m venv "$repo/venv"
+
+                  "$repo/venv/bin/pip" install --upgrade pip
+                  "$repo/venv/bin/pip" install -r "$repo/requirements.txt"
+              fi
+          done
+
+      - name: Run benchmark
+        env:
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          MODEL: gemma-4-26b-a4b-it
+          USE_DUMMY: "false"
+          USE_SPECIALISED: "false"
+          USE_VANILLA: "true"
+        run: |
+          python -m src.main
+
+      - name: Upload logs and results
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-results
+          path: |
+            logs/
+            results/
