@@ -27,7 +27,7 @@ log_file = (
         f"run_{timestamp}.log"
 )
 
-DEBUG = False
+DEBUG = True
 
 
 def setup_logger():
