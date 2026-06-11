@@ -1,15 +1,15 @@
 --- fastapi_refactor ---
 value-is-a-sequence-task.txt,function_rename
-get-auth-scheme-param.txt,function_rename
+get-auth-scheme-param-task.txt,function_rename
 --- celery_refactor ---
 rename-host-format-task.txt,function_rename
 truncate-text-task.txt,function_rename
-ensure-serialize-task.txt,function_rename
+ensure_serialize-task.txt,function_rename
 --- scrapy_refactor ---
 rename-engine-status-task.txt,function_rename
 rename-description-commands-task.txt,variable_rename
 --- ansible_refactor ---
-parse-key-value-task.txt,function_rename
+parse_key_value-task.txt,function_rename
 sort-groups-to-group-sort-task.txt,function_rename
 rename-lenient-lowercase-task.txt,function_rename
 --- django_refactor ---
