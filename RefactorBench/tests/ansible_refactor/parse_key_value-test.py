@@ -5,7 +5,7 @@ import ast
 class TestAnsibleImports(unittest.TestCase):
 
     def test_parse_key_value_defined_in_splitter_py(self):
-        file_path = '../lib/ansible/parsing/splitter.py'
+        file_path = '../ansible/parsing/splitter.py'
         function_name = 'parse_key_value'
         
         # Check if the file exists
@@ -60,7 +60,7 @@ class TestAnsibleImports(unittest.TestCase):
         self.assertFalse(parse_kv_used, f"'parse_kv' should not be used in {file_path}")
 
     def test_import_in_lib_ansible_cli_adhoc_py(self):
-        file_path = '../lib/ansible/cli/adhoc.py'
+        file_path = '../ansible/cli/adhoc.py'
         module_name = 'ansible.parsing.splitter'
         import_name = 'parse_key_value'
         
@@ -80,7 +80,7 @@ class TestAnsibleImports(unittest.TestCase):
         self.assertTrue(import_found, f"Import '{import_name}' from '{module_name}' not found in {file_path}")
 
     def test_no_parse_kv_in_lib_ansible_cli_adhoc_py(self):
-        file_path = '../lib/ansible/cli/adhoc.py'
+        file_path = '../ansible/cli/adhoc.py'
         
         self.assertTrue(os.path.exists(file_path), f"{file_path} does not exist")
         
@@ -95,7 +95,7 @@ class TestAnsibleImports(unittest.TestCase):
         self.assertFalse(parse_kv_used, f"'parse_kv' should not be used in {file_path}")
 
     def test_import_in_lib_ansible_cli_console_py(self):
-        file_path = '../lib/ansible/cli/console.py'
+        file_path = '../ansible/cli/console.py'
         module_name = 'ansible.parsing.splitter'
         import_name = 'parse_key_value'
         
@@ -115,7 +115,7 @@ class TestAnsibleImports(unittest.TestCase):
         self.assertTrue(import_found, f"Import '{import_name}' from '{module_name}' not found in {file_path}")
 
     def test_no_parse_kv_in_lib_ansible_cli_console_py(self):
-        file_path = '../lib/ansible/cli/console.py'
+        file_path = '../ansible/cli/console.py'
         
         self.assertTrue(os.path.exists(file_path), f"{file_path} does not exist")
         
@@ -130,7 +130,7 @@ class TestAnsibleImports(unittest.TestCase):
         self.assertFalse(parse_kv_used, f"'parse_kv' should not be used in {file_path}")
 
     def test_import_in_lib_ansible_parsing_mod_args_py(self):
-        file_path = '../lib/ansible/parsing/mod_args.py'
+        file_path = '../ansible/parsing/mod_args.py'
         module_name = 'ansible.parsing.splitter'
         import_name = 'parse_key_value'
         
@@ -150,7 +150,7 @@ class TestAnsibleImports(unittest.TestCase):
         self.assertTrue(import_found, f"Import '{import_name}' from '{module_name}' not found in {file_path}")
 
     def test_no_parse_kv_in_lib_ansible_parsing_mod_args_py(self):
-        file_path = '../lib/ansible/parsing/mod_args.py'
+        file_path = '../ansible/parsing/mod_args.py'
         
         self.assertTrue(os.path.exists(file_path), f"{file_path} does not exist")
         
@@ -165,7 +165,7 @@ class TestAnsibleImports(unittest.TestCase):
         self.assertFalse(parse_kv_used, f"'parse_kv' should not be used in {file_path}")
 
     def test_import_in_lib_ansible_parsing_splitter_py(self):
-        file_path = '../lib/ansible/parsing/splitter.py'
+        file_path = '../ansible/parsing/splitter.py'
         module_name = 'ansible.parsing.quoting'
         import_name = 'unquote'
         
@@ -185,7 +185,7 @@ class TestAnsibleImports(unittest.TestCase):
         self.assertTrue(import_found, f"Import '{import_name}' from '{module_name}' not found in {file_path}")
 
     def test_no_parse_kv_in_lib_ansible_parsing_splitter_py(self):
-        file_path = '../lib/ansible/parsing/splitter.py'
+        file_path = '../ansible/parsing/splitter.py'
         
         self.assertTrue(os.path.exists(file_path), f"{file_path} does not exist")
         
@@ -200,7 +200,7 @@ class TestAnsibleImports(unittest.TestCase):
         self.assertFalse(parse_kv_used, f"'parse_kv' should not be defined in {file_path}")
 
     def test_import_in_lib_ansible_plugins_lookup_csvfile_py(self):
-        file_path = '../lib/ansible/plugins/lookup/csvfile.py'
+        file_path = '../ansible/plugins/lookup/csvfile.py'
         module_name = 'ansible.parsing.splitter'
         import_name = 'parse_key_value'
         
@@ -220,7 +220,7 @@ class TestAnsibleImports(unittest.TestCase):
         self.assertTrue(import_found, f"Import '{import_name}' from '{module_name}' not found in {file_path}")
 
     def test_no_parse_kv_in_lib_ansible_plugins_lookup_csvfile_py(self):
-        file_path = '../lib/ansible/plugins/lookup/csvfile.py'
+        file_path = '../ansible/plugins/lookup/csvfile.py'
         
         self.assertTrue(os.path.exists(file_path), f"{file_path} does not exist")
         
@@ -235,7 +235,7 @@ class TestAnsibleImports(unittest.TestCase):
         self.assertFalse(parse_kv_used, f"'parse_kv' should not be used in {file_path}")
 
     def test_import_in_lib_ansible_plugins_lookup_password_py(self):
-        file_path = '../lib/ansible/plugins/lookup/password.py'
+        file_path = '../ansible/plugins/lookup/password.py'
         module_name = 'ansible.parsing.splitter'
         import_name = 'parse_key_value'
         
@@ -255,7 +255,7 @@ class TestAnsibleImports(unittest.TestCase):
         self.assertTrue(import_found, f"Import '{import_name}' from '{module_name}' not found in {file_path}")
 
     def test_no_parse_kv_in_lib_ansible_plugins_lookup_password_py(self):
-        file_path = '../lib/ansible/plugins/lookup/password.py'
+        file_path = '../ansible/plugins/lookup/password.py'
         
         self.assertTrue(os.path.exists(file_path), f"{file_path} does not exist")
         
@@ -270,7 +270,7 @@ class TestAnsibleImports(unittest.TestCase):
         self.assertFalse(parse_kv_used, f"'parse_kv' should not be used in {file_path}")
 
     def test_import_in_lib_ansible_plugins_lookup_sequence_py(self):
-        file_path = '../lib/ansible/plugins/lookup/sequence.py'
+        file_path = '../ansible/plugins/lookup/sequence.py'
         module_name = 'ansible.parsing.splitter'
         import_name = 'parse_key_value'
         
@@ -290,7 +290,7 @@ class TestAnsibleImports(unittest.TestCase):
         self.assertTrue(import_found, f"Import '{import_name}' from '{module_name}' not found in {file_path}")
 
     def test_no_parse_kv_in_lib_ansible_plugins_lookup_sequence_py(self):
-        file_path = '../lib/ansible/plugins/lookup/sequence.py'
+        file_path = '../ansible/plugins/lookup/sequence.py'
         
         self.assertTrue(os.path.exists(file_path), f"{file_path} does not exist")
         
@@ -305,7 +305,7 @@ class TestAnsibleImports(unittest.TestCase):
         self.assertFalse(parse_kv_used, f"'parse_kv' should not be used in {file_path}")
 
     def test_import_in_lib_ansible_utils_vars_py(self):
-        file_path = '../lib/ansible/utils/vars.py'
+        file_path = '../ansible/utils/vars.py'
         module_name = 'ansible.parsing.splitter'
         import_name = 'parse_key_value'
         
@@ -325,7 +325,7 @@ class TestAnsibleImports(unittest.TestCase):
         self.assertTrue(import_found, f"Import '{import_name}' from '{module_name}' not found in {file_path}")
 
     def test_no_parse_kv_in_lib_ansible_utils_vars_py(self):
-        file_path = '../lib/ansible/utils/vars.py'
+        file_path = '../ansible/utils/vars.py'
         
         self.assertTrue(os.path.exists(file_path), f"{file_path} does not exist")
         

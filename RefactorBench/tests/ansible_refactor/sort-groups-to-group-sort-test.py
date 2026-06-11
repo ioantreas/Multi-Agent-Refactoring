@@ -6,7 +6,7 @@ class TestAnsibleImports(unittest.TestCase):
 
     def test_group_sort_imported_in_manager(self):
         # Path to the file where the imports should be defined
-        file_path = '../lib/ansible/vars/manager.py'
+        file_path = '../ansible/vars/manager.py'
 
         # Check if the file exists
         self.assertTrue(os.path.exists(file_path), f"{file_path} does not exist")
@@ -32,7 +32,7 @@ class TestAnsibleImports(unittest.TestCase):
         
     def test_group_sort_function_exists(self):
         # Path to the file where the group_sort function should be defined
-        file_path = '../lib/ansible/inventory/helpers.py'
+        file_path = '../ansible/inventory/helpers.py'
 
         # Check if the file exists
         self.assertTrue(os.path.exists(file_path), f"{file_path} does not exist")
@@ -63,7 +63,7 @@ class TestAnsibleImports(unittest.TestCase):
 
     def test_get_group_vars_calls_group_sort(self):
         # Path to the file where the get_group_vars function should be defined
-        file_path = '../lib/ansible/inventory/helpers.py'
+        file_path = '../ansible/inventory/helpers.py'
 
         # Check if the file exists
         self.assertTrue(os.path.exists(file_path), f"{file_path} does not exist")
@@ -88,7 +88,7 @@ class TestAnsibleImports(unittest.TestCase):
 
     def test_group_sort_called_in_variable_manager_get_vars(self):
         # Path to the file where VariableManager and get_vars should be defined
-        file_path = '../lib/ansible/vars/manager.py'
+        file_path = '../ansible/vars/manager.py'
 
         # Check if the file exists
         self.assertTrue(os.path.exists(file_path), f"{file_path} does not exist")
