@@ -382,6 +382,7 @@ def evaluate_vanilla_agent():
 
     originals = {}
     jobs = []
+    test_results = []
 
     for test_rel_path, task_rel_path in file_mapping.items():
 
@@ -395,10 +396,10 @@ def evaluate_vanilla_agent():
         full_task_path = PROJECT_ROOT / BENCH_NAME / task_rel_path[3:]
         full_test_path = PROJECT_ROOT / BENCH_NAME / test_rel_path[3:]
         full_repository_path = (
-                PROJECT_ROOT /
-                BENCH_NAME /
-                "repositories" /
-                repository_name
+            PROJECT_ROOT /
+            BENCH_NAME /
+            "repositories" /
+            repository_name
         )
 
         instruction = full_task_path.read_text().strip()
@@ -414,22 +415,20 @@ def evaluate_vanilla_agent():
             continue
 
         relevant_file = (
-                full_repository_path /
-                match.group(1)[3:]
+            full_repository_path /
+            match.group(1)[3:]
         )
 
         execution_path = (
-                full_repository_path /
-                match.group(1)[3:].split('/')[0]
+            full_repository_path /
+            match.group(1)[3:].split('/')[0]
         )
 
         if not relevant_file.exists():
             continue
 
         if relevant_file not in originals:
-            originals[relevant_file] = (
-                relevant_file.read_text()
-            )
+            originals[relevant_file] = relevant_file.read_text()
 
         try:
 
@@ -464,35 +463,60 @@ def evaluate_vanilla_agent():
         "[REFACTORING COMPLETE] Running tests..."
     )
 
-    total_passes = total_tests = 0
+    total_passes = 0
+    total_tests = 0
 
-    logger.info(f"Overall: {total_passes}/{total_tests}")
+    for test_path, execution_path in jobs:
 
-    with open(f"results/{BENCH_NAME}_results.csv", "w") as f:
-        f.write("repository,task,tests_passed,total_tests,passing_rate\n")
-    
-        for test_path, package_root in jobs:
-            repository_name = package_root.parent.name
-            task_name = test_path.stem
-    
-            passes, total = _run_test(
-                test_path,
-                package_root,
+        repository_name = execution_path.parent.name
+        task_name = test_path.stem
+
+        passes, total = _run_test(
+            test_path,
+            execution_path,
+            repository_name,
+            task_name,
+        )
+
+        total_passes += passes
+        total_tests += total
+
+        test_results.append(
+            (
                 repository_name,
                 task_name,
+                passes,
+                total,
             )
-    
+        )
+
+    logger.info(
+        f"Overall: {total_passes}/{total_tests}"
+    )
+
+    Path("results").mkdir(exist_ok=True)
+
+    with open(f"results/{BENCH_NAME}_results.csv", "w") as f:
+
+        f.write(
+            "repository,task,tests_passed,total_tests,passing_rate\n"
+        )
+
+        for repository_name, task_name, passes, total in test_results:
+
+            rate = passes / total if total > 0 else 0.0
+
             f.write(
                 f"{repository_name},"
                 f"{task_name},"
                 f"{passes},"
                 f"{total},"
-                f"{passes / total if total > 0 else 0:.2f}\n"
+                f"{rate:.2f}\n"
             )
-    
+
     for file_path, content in originals.items():
         file_path.write_text(content)
-    
+
     logger.info("All changes reverted")
 
 def run_tests_without_refactoring():
