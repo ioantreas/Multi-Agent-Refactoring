@@ -490,6 +490,17 @@ def evaluate_vanilla_agent():
 
     logger.info("All changes reverted")
 
+    with open(f"results/{BENCH_NAME}_results.csv", "w") as f:
+        f.write("repository,task,tests_passed,total_tests,passing_rate\n")
+        total_passes = total_tests = 0
+        for test_path, package_root in jobs:
+            repository_name = package_root.parent.name
+            task_name = test_path.stem
+            passes, total = _run_test(test_path, package_root, repository_name, task_name)
+            total_passes += passes
+            total_tests += total
+            f.write(f"{repository_name},{task_name},{passes},{total},{passes / total if total > 0 else 0:.2f}\n")
+
 def run_tests_without_refactoring():
     Path("results").mkdir(exist_ok=True)  # ← add this
     test_originals = {}
