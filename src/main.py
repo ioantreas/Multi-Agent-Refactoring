@@ -466,40 +466,34 @@ def evaluate_vanilla_agent():
 
     total_passes = total_tests = 0
 
-    for test_path, execution_path in jobs:
-
-        repository_name = execution_path.parent.name
-        task_name = test_path.stem
-
-        passes, total = _run_test(
-            test_path,
-            execution_path,
-            repository_name,
-            task_name,
-        )
-
-        total_passes += passes
-        total_tests += total
-
-    logger.info(
-        f"Overall: {total_passes}/{total_tests}"
-    )
-
-    for file_path, content in originals.items():
-        file_path.write_text(content)
-
-    logger.info("All changes reverted")
+    logger.info(f"Overall: {total_passes}/{total_tests}")
 
     with open(f"results/{BENCH_NAME}_results.csv", "w") as f:
         f.write("repository,task,tests_passed,total_tests,passing_rate\n")
-        total_passes = total_tests = 0
+    
         for test_path, package_root in jobs:
             repository_name = package_root.parent.name
             task_name = test_path.stem
-            passes, total = _run_test(test_path, package_root, repository_name, task_name)
-            total_passes += passes
-            total_tests += total
-            f.write(f"{repository_name},{task_name},{passes},{total},{passes / total if total > 0 else 0:.2f}\n")
+    
+            passes, total = _run_test(
+                test_path,
+                package_root,
+                repository_name,
+                task_name,
+            )
+    
+            f.write(
+                f"{repository_name},"
+                f"{task_name},"
+                f"{passes},"
+                f"{total},"
+                f"{passes / total if total > 0 else 0:.2f}\n"
+            )
+    
+    for file_path, content in originals.items():
+        file_path.write_text(content)
+    
+    logger.info("All changes reverted")
 
 def run_tests_without_refactoring():
     Path("results").mkdir(exist_ok=True)  # ← add this
