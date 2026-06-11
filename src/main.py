@@ -22,7 +22,7 @@ if USE_DUMMY:
     from DummyBench.scripts.base_mapping import file_mapping
     BENCH_NAME = "DummyBench"
 else:
-    from RefactorBench.scripts.base_mapping import file_mapping
+    from RefactorBench.scripts.lazy_mapping import file_mapping
     BENCH_NAME = "RefactorBench"
 
 from src.agents import GeneralRefactoringAgent
