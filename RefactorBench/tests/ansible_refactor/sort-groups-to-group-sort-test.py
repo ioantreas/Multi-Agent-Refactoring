@@ -6,7 +6,7 @@ class TestAnsibleImports(unittest.TestCase):
 
     def test_group_sort_imported_in_manager(self):
         # Path to the file where the imports should be defined
-        file_path = '../lib/ansible/vars/manager.py'
+        file_path = '../ansible/vars/manager.py'
 
         # Check if the file exists
         self.assertTrue(os.path.exists(file_path), f"{file_path} does not exist")
