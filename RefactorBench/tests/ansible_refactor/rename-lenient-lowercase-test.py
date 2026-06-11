@@ -6,7 +6,7 @@ class TestAnsibleFunctionRename(unittest.TestCase):
 
     def test_lenient_lowercase_renamed_to_lowercase_of_list(self):
         # Path to the file where lenient_lowercase should be renamed to lowercase_of_list
-        file_path = '../ansible/module_utils/common/text/formatters.py'
+        file_path = '../lib/ansible/module_utils/common/text/formatters.py'
 
         # Check if the file exists
         self.assertTrue(os.path.exists(file_path), f"{file_path} does not exist")
