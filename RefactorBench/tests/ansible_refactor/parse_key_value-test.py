@@ -5,7 +5,7 @@ import ast
 class TestAnsibleImports(unittest.TestCase):
 
     def test_parse_key_value_defined_in_splitter_py(self):
-        file_path = '../lib/ansible/parsing/splitter.py'
+        file_path = '../ansible/parsing/splitter.py'
         function_name = 'parse_key_value'
         
         # Check if the file exists
